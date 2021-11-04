@@ -16,17 +16,16 @@ class BitcoinDataProviderHandler(
     private val webClient: WebClient
 ) {
 
-    fun getData(serverRequest: ServerRequest) =
+    fun handle(serverRequest: ServerRequest) =
         ServerResponse.ok()
             .contentType(MediaType.TEXT_EVENT_STREAM)
             .body(getHistory(), BitCoinHistory::class.java)
-            .doOnNext { println("Oi") }
 
     private fun getHistory(): Flux<BitCoinHistory> =
          webClient
             .get()
             .uri("/bitcoin/history")
             .retrieve()
-            .bodyToFlux<BitCoinHistory>()
+            .bodyToFlux()
 
 }
