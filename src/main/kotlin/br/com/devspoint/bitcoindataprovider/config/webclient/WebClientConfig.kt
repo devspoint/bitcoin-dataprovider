@@ -9,6 +9,6 @@ class WebClientConfig {
 
     @Bean
     fun webClientFactory(): WebClient = WebClient.builder()
-        .baseUrl("http://localhost:8080")
+        .baseUrl("http://localhost:8082")
         .build()
 }
